@@ -24,11 +24,9 @@ contract HelperConfig is Script {
         address priceFeed; // ETH/USD price feed address
     }
 
-    address public constant SEPOLIA_ETH_USD_ADDRESS =
-        0x694AA1769357215DE4FAC081bf1f309aDC325306;
+    address public constant SEPOLIA_ETH_USD_ADDRESS = 0x694AA1769357215DE4FAC081bf1f309aDC325306;
 
-    address public constant MAINNET_ETH_USD_ADDRESS =
-        0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419;
+    address public constant MAINNET_ETH_USD_ADDRESS = 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419;
 
     constructor() {
         if (block.chainid == 11155111) {
@@ -41,17 +39,13 @@ contract HelperConfig is Script {
     }
 
     function getSepoliaEthConfig() public pure returns (NetworkConfig memory) {
-        NetworkConfig memory sepoliaConfig = NetworkConfig({
-            priceFeed: SEPOLIA_ETH_USD_ADDRESS
-        });
+        NetworkConfig memory sepoliaConfig = NetworkConfig({priceFeed: SEPOLIA_ETH_USD_ADDRESS});
 
         return sepoliaConfig;
     }
 
     function getMainnetEthConfig() public pure returns (NetworkConfig memory) {
-        NetworkConfig memory mainnetConfig = NetworkConfig({
-            priceFeed: MAINNET_ETH_USD_ADDRESS
-        });
+        NetworkConfig memory mainnetConfig = NetworkConfig({priceFeed: MAINNET_ETH_USD_ADDRESS});
 
         return mainnetConfig;
     }
@@ -64,15 +58,10 @@ contract HelperConfig is Script {
         // 2. Return the address
 
         vm.startBroadcast();
-        MockV3Aggregator mockV3Aggregator = new MockV3Aggregator(
-            DECIMALS,
-            INITIAL_ANSWER
-        );
+        MockV3Aggregator mockV3Aggregator = new MockV3Aggregator(DECIMALS, INITIAL_ANSWER);
         vm.stopBroadcast();
 
-        NetworkConfig memory anvilConfig = NetworkConfig({
-            priceFeed: address(mockV3Aggregator)
-        });
+        NetworkConfig memory anvilConfig = NetworkConfig({priceFeed: address(mockV3Aggregator)});
 
         return anvilConfig;
     }

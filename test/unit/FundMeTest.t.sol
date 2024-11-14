@@ -85,10 +85,7 @@ contract FundMeTest is Test {
         uint256 endingOwnerBalance = fundMe.getOwner().balance;
         uint256 endingFundMeBalance = address(fundMe).balance;
 
-        assertEq(
-            startingOwnerBalance + startingFundMeBalance,
-            endingOwnerBalance
-        );
+        assertEq(startingOwnerBalance + startingFundMeBalance, endingOwnerBalance);
         assertEq(0, endingFundMeBalance);
     }
 
@@ -111,10 +108,7 @@ contract FundMeTest is Test {
         vm.stopPrank();
 
         // Assert
-        assertEq(
-            startingOwnerBalance + startingFundMeBalance,
-            fundMe.getOwner().balance
-        );
+        assertEq(startingOwnerBalance + startingFundMeBalance, fundMe.getOwner().balance);
         assertEq(0, address(fundMe).balance);
     }
 
@@ -137,10 +131,7 @@ contract FundMeTest is Test {
         vm.stopPrank();
 
         // Assert
-        assertEq(
-            startingOwnerBalance + startingFundMeBalance,
-            fundMe.getOwner().balance
-        );
+        assertEq(startingOwnerBalance + startingFundMeBalance, fundMe.getOwner().balance);
         assertEq(0, address(fundMe).balance);
     }
 }

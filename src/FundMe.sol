@@ -21,7 +21,6 @@ contract FundMe {
     constructor(address priceFeed) {
         i_owner = msg.sender;
         s_priceFeed = AggregatorV3Interface(priceFeed);
-
     }
 
     function fund() public payable {
@@ -49,9 +48,9 @@ contract FundMe {
             address funder = s_funders[funderIndex];
             s_addressToAmountFunded[funder] = 0;
         }
-        s_funders = new address[](0);  
+        s_funders = new address[](0);
         (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
-        require(callSuccess, "Call failed"); 
+        require(callSuccess, "Call failed");
     }
 
     function withdraw() public onlyOwner {
@@ -91,7 +90,7 @@ contract FundMe {
         fund();
     }
 
-     /**
+    /**
      * Getter Functions
      */
 
@@ -108,7 +107,7 @@ contract FundMe {
         return s_funders[index];
     }
 
-    function getOwner() public view returns (address){
+    function getOwner() public view returns (address) {
         return i_owner;
     }
 }
